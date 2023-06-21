@@ -1,4 +1,4 @@
-import Fighter, { AllFighters } from '../Fighter';
+import Fighter from '../Fighter';
 import Battle from './Battle';
 
 class PVP extends Battle {
@@ -19,7 +19,7 @@ class PVP extends Battle {
   }
 
   fight(): number {
-    this.stillFighting()
+    this.stillFighting();
     if (this.player.lifePoints > 0) return 1;
     return -1;
   }
