@@ -1,28 +1,27 @@
-import Fighter from '../Fighter';
+import Fighter, { AllFighters } from '../Fighter';
 import Battle from './Battle';
 
 class PVP extends Battle {
-  private _lutadorA: Fighter;
-  private _lutadorB: Fighter;
-  
-  constructor(lutadorA: Fighter, lutadorB: Fighter) {
+  constructor(private lutadorA: Fighter, private lutadorB: Fighter) {
     super(lutadorA);
-    this._lutadorA = lutadorA;
-    this._lutadorB = lutadorB;
   }
 
-  public fight(): number {
-    let stillFighting = true;
-    while (stillFighting === true) {
-      this._lutadorA.attack(this._lutadorB);
-      this._lutadorB.attack(this._lutadorA);
-      if (this._lutadorA.lifePoints === -1 
-       || this._lutadorB.lifePoints === -1) {
-        stillFighting = false;
+  private stillFighting(): void {
+    let figthing = true;
+    while (figthing === true) {
+      this.player.attack(this.lutadorB);
+      this.lutadorB.attack(this.player);
+
+      if (this.player.lifePoints === -1 || this.lutadorB.lifePoints === -1) {
+        figthing = false;
       }
     }
-    if (super.fight() === -1) return -1;
-    return 1;
+  }
+
+  fight(): number {
+    this.stillFighting()
+    if (this.player.lifePoints > 0) return 1;
+    return -1;
   }
 }
 
