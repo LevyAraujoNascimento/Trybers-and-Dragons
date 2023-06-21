@@ -1,10 +1,8 @@
-import Fighter from './Fighter';
-
 interface SimpleFighter {
   lifePoints: number;
   strength: number;
 
-  attack(enemy: Fighter): void;
+  attack(enemy: SimpleFighter): void;
   receiveDamage(attackPoints: number): number;
 }
 
